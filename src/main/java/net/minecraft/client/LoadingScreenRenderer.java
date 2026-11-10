@@ -1,0 +1,178 @@
+package net.minecraft.client;
+
+import net.minecraft.client.gui.Gui;
+import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.client.gui.ScaledResolution;
+import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.OpenGlHelper;
+import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.client.renderer.WorldRenderer;
+import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
+import net.minecraft.client.shader.Framebuffer;
+import net.minecraft.util.IProgressUpdate;
+import net.minecraft.util.MinecraftError;
+import net.optifine.CustomLoadingScreen;
+import net.optifine.CustomLoadingScreens;
+import net.optifine.reflect.Reflector;
+import team.gothaj.client.api.util.Utils;
+
+import java.awt.*;
+
+public class LoadingScreenRenderer implements IProgressUpdate
+{
+    private String message = "";
+    private Minecraft mc;
+    private String currentlyDisplayedText = "";
+    private long systemTime = Minecraft.getSystemTime();
+    private boolean loadingSuccess;
+    private ScaledResolution scaledResolution;
+    private Framebuffer framebuffer;
+
+    public LoadingScreenRenderer(Minecraft mcIn)
+    {
+        this.mc = mcIn;
+        this.scaledResolution = new ScaledResolution(mcIn);
+        this.framebuffer = new Framebuffer(mcIn.displayWidth, mcIn.displayHeight, false);
+        this.framebuffer.setFramebufferFilter(9728);
+    }
+
+    public void resetProgressAndMessage(String message)
+    {
+        this.loadingSuccess = false;
+        this.displayString(message);
+    }
+
+    public void displaySavingString(String message)
+    {
+        this.loadingSuccess = true;
+        this.displayString(message);
+    }
+
+    private void displayString(String message)
+    {
+        this.currentlyDisplayedText = message;
+
+        if (!this.mc.running)
+        {
+            if (!this.loadingSuccess)
+            {
+                throw new MinecraftError();
+            }
+        }
+        else
+        {
+            GlStateManager.clear(256);
+            GlStateManager.matrixMode(5889);
+            GlStateManager.loadIdentity();
+
+            if (OpenGlHelper.isFramebufferEnabled())
+            {
+                int i = this.scaledResolution.getScaleFactor();
+                GlStateManager.ortho(0.0D, (double)(this.scaledResolution.getScaledWidth() * i), (double)(this.scaledResolution.getScaledHeight() * i), 0.0D, 100.0D, 300.0D);
+            }
+            else
+            {
+                ScaledResolution scaledresolution = new ScaledResolution(this.mc);
+                GlStateManager.ortho(0.0D, scaledresolution.getScaledWidth_double(), scaledresolution.getScaledHeight_double(), 0.0D, 100.0D, 300.0D);
+            }
+
+            GlStateManager.matrixMode(5888);
+            GlStateManager.loadIdentity();
+            GlStateManager.translate(0.0F, 0.0F, -200.0F);
+        }
+    }
+
+    public void displayLoadingString(String message)
+    {
+        if (!this.mc.running)
+        {
+            if (!this.loadingSuccess)
+            {
+                throw new MinecraftError();
+            }
+        }
+        else
+        {
+            this.systemTime = 0L;
+            this.message = message;
+            this.setLoadingProgress(-1);
+            this.systemTime = 0L;
+        }
+    }
+
+    public void setLoadingProgress(int progress)
+    {
+        if (!this.mc.running)
+        {
+            if (!this.loadingSuccess)
+            {
+                throw new MinecraftError();
+            }
+        }
+        else
+        {
+            long i = Minecraft.getSystemTime();
+
+            if (i - this.systemTime >= 16L)
+            {
+                this.systemTime = i;
+                ScaledResolution scaledresolution = new ScaledResolution(this.mc);
+                int j = scaledresolution.getScaleFactor();
+                int k = scaledresolution.getScaledWidth();
+                int l = scaledresolution.getScaledHeight();
+
+                if (OpenGlHelper.isFramebufferEnabled())
+                {
+                    this.framebuffer.framebufferClear();
+                }
+                else
+                {
+                    GlStateManager.clear(256);
+                }
+
+                this.framebuffer.bindFramebuffer(false);
+                GlStateManager.matrixMode(5889);
+                GlStateManager.loadIdentity();
+                GlStateManager.ortho(0.0D, scaledresolution.getScaledWidth_double(), scaledresolution.getScaledHeight_double(), 0.0D, 100.0D, 300.0D);
+                GlStateManager.matrixMode(5888);
+                GlStateManager.loadIdentity();
+                GlStateManager.translate(0.0F, 0.0F, -200.0F);
+
+                if (!OpenGlHelper.isFramebufferEnabled())
+                {
+                    GlStateManager.clear(16640);
+                }
+
+
+                GuiScreen.drawBackground();
+
+                GlStateManager.enableBlend();
+                GlStateManager.tryBlendFuncSeparate(770, 771, 1, 0);
+                this.mc.fontRendererObj.drawStringWithShadow(this.currentlyDisplayedText, (float)((k - this.mc.fontRendererObj.getStringWidth(this.currentlyDisplayedText)) / 2), (float)(l / 2 - 4 - 16), 16777215);
+                this.mc.fontRendererObj.drawStringWithShadow(this.message, (float)((k - this.mc.fontRendererObj.getStringWidth(this.message)) / 2), (float)(l / 2 - 4 + 8), 16777215);
+
+                this.framebuffer.unbindFramebuffer();
+
+                if (OpenGlHelper.isFramebufferEnabled())
+                {
+                    this.framebuffer.framebufferRender(k * j, l * j);
+                }
+
+                this.mc.updateDisplay();
+
+                try
+                {
+                    Thread.yield();
+                }
+                catch (Exception var16)
+                {
+                    ;
+                }
+            }
+        }
+    }
+
+    public void setDoneWorking()
+    {
+    }
+}

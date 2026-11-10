@@ -1,0 +1,368 @@
+{
+  "menu": {
+    "category": "music",
+    "sounds": [
+      "gothaj:menu"
+    ]
+  },
+  "keyboard.x": {
+    "category": "master",
+    "sounds": [
+      "gothaj:keyboard/x"
+    ]
+  },
+  "keyboard.a": {
+    "category": "master",
+    "sounds": [
+      "gothaj:keyboard/a"
+    ]
+  },
+  "keyboard.8": {
+    "category": "master",
+    "sounds": [
+      "gothaj:keyboard/8"
+    ]
+  },
+  "keyboard.p": {
+    "category": "master",
+    "sounds": [
+      "gothaj:keyboard/p"
+    ]
+  },
+  "keyboard.v": {
+    "category": "master",
+    "sounds": [
+      "gothaj:keyboard/v"
+    ]
+  },
+  "keyboard.c": {
+    "category": "master",
+    "sounds": [
+      "gothaj:keyboard/c"
+    ]
+  },
+  "keyboard.lshift": {
+    "category": "master",
+    "sounds": [
+      "gothaj:keyboard/lshift"
+    ]
+  },
+  "keyboard.u": {
+    "category": "master",
+    "sounds": [
+      "gothaj:keyboard/u"
+    ]
+  },
+  "keyboard.enter": {
+    "category": "master",
+    "sounds": [
+      "gothaj:keyboard/enter"
+    ]
+  },
+  "keyboard.j": {
+    "category": "master",
+    "sounds": [
+      "gothaj:keyboard/j"
+    ]
+  },
+  "keyboard.d": {
+    "category": "master",
+    "sounds": [
+      "gothaj:keyboard/d"
+    ]
+  },
+  "keyboard.9": {
+    "category": "master",
+    "sounds": [
+      "gothaj:keyboard/9"
+    ]
+  },
+  "keyboard.6": {
+    "category": "master",
+    "sounds": [
+      "gothaj:keyboard/6"
+    ]
+  },
+  "keyboard.o": {
+    "category": "master",
+    "sounds": [
+      "gothaj:keyboard/o"
+    ]
+  },
+  "keyboard.i": {
+    "category": "master",
+    "sounds": [
+      "gothaj:keyboard/i"
+    ]
+  },
+  "keyboard.5": {
+    "category": "master",
+    "sounds": [
+      "gothaj:keyboard/5"
+    ]
+  },
+  "keyboard.s": {
+    "category": "master",
+    "sounds": [
+      "gothaj:keyboard/s"
+    ]
+  },
+  "keyboard.z": {
+    "category": "master",
+    "sounds": [
+      "gothaj:keyboard/z"
+    ]
+  },
+  "keyboard.space": {
+    "category": "master",
+    "sounds": [
+      "gothaj:keyboard/space"
+    ]
+  },
+  "keyboard.f": {
+    "category": "master",
+    "sounds": [
+      "gothaj:keyboard/f"
+    ]
+  },
+  "keyboard.2": {
+    "category": "master",
+    "sounds": [
+      "gothaj:keyboard/2"
+    ]
+  },
+  "keyboard.m": {
+    "category": "master",
+    "sounds": [
+      "gothaj:keyboard/m"
+    ]
+  },
+  "keyboard.q": {
+    "category": "master",
+    "sounds": [
+      "gothaj:keyboard/q"
+    ]
+  },
+  "keyboard.k": {
+    "category": "master",
+    "sounds": [
+      "gothaj:keyboard/k"
+    ]
+  },
+  "keyboard.e": {
+    "category": "master",
+    "sounds": [
+      "gothaj:keyboard/e"
+    ]
+  },
+  "keyboard.back": {
+    "category": "master",
+    "sounds": [
+      "gothaj:keyboard/back"
+    ]
+  },
+  "keyboard.h": {
+    "category": "master",
+    "sounds": [
+      "gothaj:keyboard/h"
+    ]
+  },
+  "keyboard.l": {
+    "category": "master",
+    "sounds": [
+      "gothaj:keyboard/l"
+    ]
+  },
+  "keyboard.4": {
+    "category": "master",
+    "sounds": [
+      "gothaj:keyboard/4"
+    ]
+  },
+  "keyboard.tab": {
+    "category": "master",
+    "sounds": [
+      "gothaj:keyboard/tab"
+    ]
+  },
+  "keyboard.g": {
+    "category": "master",
+    "sounds": [
+      "gothaj:keyboard/g"
+    ]
+  },
+  "keyboard.3": {
+    "category": "master",
+    "sounds": [
+      "gothaj:keyboard/3"
+    ]
+  },
+  "keyboard.t": {
+    "category": "master",
+    "sounds": [
+      "gothaj:keyboard/t"
+    ]
+  },
+  "keyboard.w": {
+    "category": "master",
+    "sounds": [
+      "gothaj:keyboard/w"
+    ]
+  },
+  "keyboard.0": {
+    "category": "master",
+    "sounds": [
+      "gothaj:keyboard/0"
+    ]
+  },
+  "keyboard.escape": {
+    "category": "master",
+    "sounds": [
+      "gothaj:keyboard/escape"
+    ]
+  },
+  "keyboard.7": {
+    "category": "master",
+    "sounds": [
+      "gothaj:keyboard/7"
+    ]
+  },
+  "keyboard.1": {
+    "category": "master",
+    "sounds": [
+      "gothaj:keyboard/1"
+    ]
+  },
+  "keyboard.r": {
+    "category": "master",
+    "sounds": [
+      "gothaj:keyboard/r"
+    ]
+  },
+  "keyboard.n": {
+    "category": "master",
+    "sounds": [
+      "gothaj:keyboard/n"
+    ]
+  },
+  "keyboard.y": {
+    "category": "master",
+    "sounds": [
+      "gothaj:keyboard/y"
+    ]
+  },
+  "keyboard.rshift": {
+    "category": "master",
+    "sounds": [
+      "gothaj:keyboard/rshift"
+    ]
+  },
+  "keyboard.capital": {
+    "category": "master",
+    "sounds": [
+      "gothaj:keyboard/capital"
+    ]
+  },
+  "keyboard.b": {
+    "category": "master",
+    "sounds": [
+      "gothaj:keyboard/b"
+    ]
+  },
+  "untoggle": {
+    "category": "master",
+    "sounds": [
+      "gothaj:untoggle"
+    ]
+  },
+  "warning": {
+    "category": "master",
+    "sounds": [
+      "gothaj:warning"
+    ]
+  },
+  "toggle": {
+    "category": "master",
+    "sounds": [
+      "gothaj:toggle"
+    ]
+  },
+  "mouse.release1": {
+    "category": "master",
+    "sounds": [
+      "gothaj:mouse/release1"
+    ]
+  },
+  "mouse.click1": {
+    "category": "master",
+    "sounds": [
+      "gothaj:mouse/click1"
+    ]
+  },
+  "mouse.click2": {
+    "category": "master",
+    "sounds": [
+      "gothaj:mouse/click2"
+    ]
+  },
+  "mouse.release2": {
+    "category": "master",
+    "sounds": [
+      "gothaj:mouse/release2"
+    ]
+  },
+  "lightsaber.saber4": {
+    "category": "master",
+    "sounds": [
+      "gothaj:lightsaber/saber4"
+    ]
+  },
+  "lightsaber.saber5": {
+    "category": "master",
+    "sounds": [
+      "gothaj:lightsaber/saber5"
+    ]
+  },
+  "lightsaber.saber1": {
+    "category": "master",
+    "sounds": [
+      "gothaj:lightsaber/saber1"
+    ]
+  },
+  "lightsaber.saber2": {
+    "category": "master",
+    "sounds": [
+      "gothaj:lightsaber/saber2"
+    ]
+  },
+  "lightsaber.saber3": {
+    "category": "master",
+    "sounds": [
+      "gothaj:lightsaber/saber3"
+    ]
+  },
+  "skeet": {
+    "category": "master",
+    "sounds": [
+      "gothaj:skeet"
+    ]
+  },
+  "enable": {
+    "category": "master",
+    "sounds": [
+      "gothaj:enable"
+    ]
+  },
+  "disable": {
+    "category": "master",
+    "sounds": [
+      "gothaj:disable"
+    ]
+  },
+  "neverlose": {
+    "category": "master",
+    "sounds": [
+      "gothaj:neverlose"
+    ]
+  }
+}

@@ -1,0 +1,79 @@
+# Project settings
+.vs/
+.vscode/
+.idea/
+.settings/
+
+# Build systems
+.m2/
+.gradle/
+
+# Project files
+.classpath
+.project
+*.iml
+
+# Common compiler output directories
+target/
+!src/**/target/
+build/
+!src/**/build/
+out/
+!src/**/out/
+
+# Common working directories
+run/
+!src/**/run/
+test_run/
+!src/**/test_run/
+work/
+!src/**/work/
+workspace/
+!src/**/workspace/
+assets
+# The rule above targets the run directory, but it matches any path segment named
+# "assets" — including the source tree, where new files would be silently dropped.
+!src/main/resources/assets/
+saves
+resourcepacks
+gothaj
+!src/main/resources/assets/gothaj/
+!src/main/java/team/gothaj/
+!src/main/java/team/gothaj/client/
+!src/main/java/team/gothaj/client/api/
+!src/main/java/team/gothaj/client/api/util/
+!src/main/java/team/gothaj/client/api/util/other/
+!src/main/java/team/gothaj/client/api/util/other/security/
+!src/main/java/team/gothaj/client/api/util/other/security/RememberedCredentials.java
+crash-reports
+
+# Ignored by default
+*.class
+*.log
+
+# Binaries
+.jar
+.jar.*
+
+# JVM Crash Logs
+hs_err_pid*
+replay_pid*
+
+obfuscate/log/
+obfuscate/log/**/
+obfuscate/input/
+obfuscate/input/**/
+obfuscate/*[Ll]og.txt
+GothajVia/ViaLoadingBase/viabackwards.yml
+GothajVia/ViaLoadingBase/viarewind.yml
+GothajVia/ViaLoadingBase/viaversion.yml
+.claude/settings.local.json
+build.gradle
+io/github/kawase/x64-windows.dll
+log4j2.xml
+META-INF/MANIFEST.MF
+options.txt
+optionsof.txt
+pack.png
+servers.dat
+usercache.json

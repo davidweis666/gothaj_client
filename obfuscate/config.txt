@@ -1,0 +1,103 @@
+classpath
+    "./input/lib/*.jar";
+
+open
+    openNestedArchives=false
+
+    "./input/client.jar";
+
+classInitializationOrder
+    Start > net.minecraft.client.main.Main and
+
+    net.minecraft.client.shader.Framebuffer > org.lwjgl.opengl.GL12 and
+    org.lwjgl.opengl.GL12 > org.lwjgl.opengl.GL13 and
+    org.lwjgl.opengl.GL13 > org.lwjgl.opengl.GL14 and
+    org.lwjgl.opengl.GL14 > org.lwjgl.opengl.GL15 and
+    org.lwjgl.opengl.GL15 > org.lwjgl.opengl.GL20 and
+    org.lwjgl.opengl.GL20 > org.lwjgl.opengl.GL21 and
+    org.lwjgl.opengl.GL21 > org.lwjgl.opengl.GL30 and
+    org.lwjgl.opengl.GL30 > org.lwjgl.opengl.GL12C and
+    org.lwjgl.opengl.GL12C > org.lwjgl.opengl.GL13C and
+    org.lwjgl.opengl.GL13C > org.lwjgl.opengl.GL14C and
+    org.lwjgl.opengl.GL14C > org.lwjgl.opengl.GL15C and
+    org.lwjgl.opengl.GL15C > org.lwjgl.opengl.GL20C and
+    org.lwjgl.opengl.GL20C > org.lwjgl.opengl.GL21C and
+    org.lwjgl.opengl.GL21C > org.lwjgl.opengl.GL30C and
+    org.lwjgl.opengl.GL30C > net.minecraft.client.renderer.texture.TextureUtil and
+
+    net.minecraft.client.LoadingScreenRenderer > net.minecraft.client.gui.GuiScreen and
+    net.minecraft.client.gui.GuiScreen > team.gothaj.client.api.util.render.shader.ShaderUtil and
+    team.gothaj.client.api.util.render.shader.ShaderUtil > team.gothaj.client.api.util.other.FileUtil;
+
+obfuscateReferencesInclude
+    team.gothaj.cloud..* * and
+    team.gothaj.cloud..* *(*) and
+    containedIn{team.gothaj.cloud..* *(*)} *.* * and
+    containedIn{team.gothaj.cloud..* *(*)} *.* *(*);
+
+accessedByReflection
+    @*.SerializedName *.* * and
+
+    @*.FunctionalInterface *.* *(*) and
+
+    *.* @*.Listen *(*) and
+
+    net.minecraft.network..* and
+    net.minecraft.network..* *(*);
+
+exclude
+    @*.SerializedName *.* * and
+
+    org.lwjgl.input.Keyboard KEY_*;
+
+fixedClasses
+    net.minecraft.client.LoadingScreenRenderer;
+
+methodParameterChangesExclude
+    @*.FunctionalInterface *.* *(*) and
+
+    *.* @*.Listen *(*) and
+
+    net.minecraft.network..* *(*);
+
+methodParameterObfuscationExclude
+    @*.FunctionalInterface *.* *(*) and
+
+    *.* @*.Listen *(*) and
+
+    net.minecraft.network..* *(*);
+
+obfuscate
+        changeLogFileOut="./log/changes.txt"
+
+        keepGenericsInfo=false
+
+        obfuscateFlow=aggressive
+        exceptionObfuscation=heavy
+
+        encryptStringLiterals=enhanced
+        encryptIntegerConstants=aggressive
+        encryptLongConstants=normal
+
+        collapsePackagesWithDefault="pub/gothaj/client"
+
+        autoReflectionHandling=none
+
+        localVariables=delete
+        lineNumbers=delete
+
+        methodParameterChanges=flowObfuscate
+        methodParameterChangesPackage="pub/gothaj/client"
+        obfuscateParameters=normal
+
+        obfuscateReferences=normal
+        obfuscateReferenceStructures=inReferencingClasses
+
+        uniqueClassNames=false
+        ;
+
+// arg: --two-pass
+exclude *.^ and *.^*^ and *.^*^ * and *.^*^ *(*);
+
+saveAll
+    archiveCompression=all "../output.jar";

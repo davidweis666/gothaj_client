@@ -1,0 +1,93 @@
+name: Daily Release
+
+on:
+  schedule:
+    - cron: '0 23 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  daily-release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout project sources
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Check for commits in last 24 hours
+        id: check-commits
+        uses: adriangl/check-new-commits-action@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          seconds: 86400
+
+      - name: Exit if no commits today
+        if: steps.check-commits.outputs.has-new-commits != 'true'
+        run: |
+          echo "No commits in the last 24 hours, skipping release"
+          exit 0
+
+      - name: Setup Java
+        if: steps.check-commits.outputs.has-new-commits == 'true'
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'liberica'
+          java-version: '25'
+          java-package: 'jdk'
+
+      - name: Setup Gradle
+        if: steps.check-commits.outputs.has-new-commits == 'true'
+        uses: gradle/actions/setup-gradle@v3
+
+      - name: Make gradlew executable
+        if: steps.check-commits.outputs.has-new-commits == 'true'
+        run: chmod +x ./gradlew
+
+      - name: Build jar and libraries
+        if: steps.check-commits.outputs.has-new-commits == 'true'
+        run: ./gradlew jar buildLibraries
+
+      - name: Get current date and time
+        if: steps.check-commits.outputs.has-new-commits == 'true'
+        id: datetime
+        run: echo "datetime=$(TZ='Europe/Bratislava' date +'%Y-%m-%d')" >> $GITHUB_OUTPUT
+
+      - name: Bundle client, libraries and run.bat
+        if: steps.check-commits.outputs.has-new-commits == 'true'
+        run: |
+          mkdir -p release_bundle
+          cp build/libs/* release_bundle/
+          cp run.bat release_bundle/
+          cd release_bundle
+          zip -r "client-${{ steps.datetime.outputs.datetime }}.zip" .
+          mv "client-${{ steps.datetime.outputs.datetime }}.zip" ../
+          cd ..
+
+      - name: Delete old daily release
+        if: steps.check-commits.outputs.has-new-commits == 'true'
+        uses: dev-drprasad/delete-older-releases@v0.3.4
+        with:
+          keep_latest: 0
+          delete_tags: true
+          delete_tag_pattern: '^daily-.*'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Create daily release
+        if: steps.check-commits.outputs.has-new-commits == 'true'
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: daily-${{ steps.datetime.outputs.datetime }}
+          name: Daily Build ${{ steps.datetime.outputs.datetime }}
+          body: |
+            Automated daily build from ${{ steps.datetime.outputs.datetime }}
+            
+            **Changes:** ${{ steps.check-commits.outputs.new-commits-number }} new commit(s) in the last 24 hours
+          files: client-${{ steps.datetime.outputs.datetime }}.zip
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
